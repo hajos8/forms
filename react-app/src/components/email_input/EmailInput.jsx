@@ -7,6 +7,9 @@ export default class EmailInput extends Component{
 
     setEmail = function(email){
         console.log("setEmail", email)
+
+        this.props.onEmailChange(email)
+
         this.setState({email})
     }
 

@@ -2,10 +2,18 @@
 import React from "react";
 import EmailInput from "../components/email_input/EmailInput";
 export default class SimplePage extends React.Component {
+    state = {
+        email: ""
+    }
 
     handleFormSubmit = e =>{
         e.preventDefault()
         console.log("email", this.state.email)
+    }
+
+    handleEmailChange = email =>{
+        console.log("handleEmailChange", email)
+        this.setState({email})
     }
 
     render() {
@@ -13,7 +21,7 @@ export default class SimplePage extends React.Component {
             <div id="content-simple" className="tab-content active">
             <h2>Simple Email Form</h2>
                 <form onSubmit={this.handleFormSubmit}>
-                    <EmailInput/>
+                    <EmailInput onEmailChange={this.handleEmailChange}/>
                     <button type="submit">Submit</button>
                     <input type="reset" value={"Reset"}/>
                 </form>
