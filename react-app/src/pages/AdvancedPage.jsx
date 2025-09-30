@@ -1,11 +1,15 @@
 import React from "react";
 import InputField from "../components/InputField/InputField";
+import Checkbox from "../components/Checkbox/Checkbox";
 
 export default class AdvancedPage extends React.Component {
     state = {
         advText: '',
         advEmail: '',
-        advTel: ''
+        advTel: '',
+
+        "adv-checkbox1": false,
+        "adv-checkbox2": false
     }
 
     handleAdvTextValueChange = e =>{
@@ -22,6 +26,12 @@ export default class AdvancedPage extends React.Component {
         console.log(tel)
         if(e[0]=='+' && !isNaN(Number(tel))) result = e
         this.setState({advTel: result}) //TODO validation
+    }
+
+    handleCheckToggle = e =>{
+        const newState = {...this.state}
+        newState[e] = !this.state.e
+        this.setState(newState)
     }
 
     render() {
@@ -41,8 +51,16 @@ export default class AdvancedPage extends React.Component {
                     <div className="form-row">
                         <label>Checkbox:</label>
                         <div className="checkbox-group">
-                            <input type="checkbox" id="adv-checkbox1" name="adv-checkbox1" /><label htmlFor="adv-checkbox1">Item 1</label>
-                            <input type="checkbox" id="adv-checkbox2" name="adv-checkbox2" /><label htmlFor="adv-checkbox2">Item 2</label>
+                            <Checkbox
+                                name="adv-checkbox1"
+                                label="Item 1"
+                                onCheckToggle={toggledCheckBox => this.handleCheckToggle(toggledCheckBox)}
+                            />
+                            <Checkbox
+                                name="adv-checkbox2"
+                                label="Item 2"
+                                onCheckToggle={toggledCheckBox => this.handleCheckToggle(toggledCheckBox)}
+                            />
                         </div>
                     </div>
                     <div className="form-row">
