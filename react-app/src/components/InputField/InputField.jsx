@@ -8,7 +8,7 @@ export default class InputField extends Component{
     setValue = function(value){
         console.log("setValue", value)
 
-        this.props.onvalueChange(value)
+        this.props.onValueChange(value)
 
         this.setState({value})
     }
@@ -24,7 +24,7 @@ export default class InputField extends Component{
                 placeholder={this.props.placeholder}
                 required 
                 autoComplete="on" 
-                onChange={e => this.setvalue(e.target?.value)}
+                onChange={e => this.setValue(e.target?.value)}
                 />
             </Fragment>
         )

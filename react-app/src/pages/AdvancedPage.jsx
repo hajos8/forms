@@ -3,11 +3,16 @@ import InputField from "../components/InputField/InputField";
 
 export default class AdvancedPage extends React.Component {
     state = {
-        advText: ''
+        advText: '',
+        advEmail: ''
     }
 
     handleAdvTextValueChange = e =>{
-        this.setState({advText}) //TODO validation
+        this.setState({advText: e}) //TODO validation
+    }
+
+    handleAdvEmailValueChange = e =>{
+        this.setState({advText: e}) //TODO validation
     }
 
     render() {
@@ -64,8 +69,13 @@ export default class AdvancedPage extends React.Component {
                         <input type="datetime-local" id="adv-datetime" name="adv-datetime" />
                     </div>
                     <div className="form-row">
-                        <label htmlFor="adv-email">Email:</label>
-                        <input type="email" id="adv-email" name="adv-email" placeholder="example@mail.com" />
+                        <InputField
+                            type="email"
+                            name="adv-email"
+                            label="Email:"
+                            placeholder="example@gmail.com"
+                            onValueChange={this.handleAdvEmailValueChange}
+                        />
                     </div>
                     <div className="form-row">
                         <label htmlFor="adv-tel">Telephone:</label>
