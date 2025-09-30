@@ -4,7 +4,8 @@ import InputField from "../components/InputField/InputField";
 export default class AdvancedPage extends React.Component {
     state = {
         advText: '',
-        advEmail: ''
+        advEmail: '',
+        advTel: ''
     }
 
     handleAdvTextValueChange = e =>{
@@ -12,7 +13,15 @@ export default class AdvancedPage extends React.Component {
     }
 
     handleAdvEmailValueChange = e =>{
-        this.setState({advText: e}) //TODO validation
+        this.setState({advEmail: e}) //TODO validation
+    }
+
+    handleAdvTelValueChange = e =>{
+        let result ='error in tel: ' +e
+        let tel = e.replaceAll(" ", "").substr(1,e.length)
+        console.log(tel)
+        if(e[0]=='+' && !isNaN(Number(tel))) result = e
+        this.setState({advTel: result}) //TODO validation
     }
 
     render() {
@@ -78,8 +87,13 @@ export default class AdvancedPage extends React.Component {
                         />
                     </div>
                     <div className="form-row">
-                        <label htmlFor="adv-tel">Telephone:</label>
-                        <input type="tel" id="adv-tel" name="adv-tel" placeholder="+36 20 123 4567" />
+                        <InputField
+                            type="tel"
+                            name="adv-tel"
+                            label="Telephone:"
+                            placeholder="+36 20 123 4567"
+                            onValueChange={this.handleAdvTelValueChange}
+                        />
                     </div>
                     <div className="form-row">
                         <label htmlFor="adv-hidden">Hidden value:</label>
