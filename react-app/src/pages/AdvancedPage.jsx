@@ -10,7 +10,9 @@ export default class AdvancedPage extends React.Component {
         advTel: '',
 
         "adv-checkbox1": false,
-        "adv-checkbox2": false
+        "adv-checkbox2": false,
+
+        radioChecked: ""
     }
 
     handleAdvTextValueChange = e =>{
@@ -33,6 +35,11 @@ export default class AdvancedPage extends React.Component {
         const newState = {...this.state}
         newState[e] = !this.state.e
         this.setState(newState)
+    }
+
+    handleRadioChecked = radioId =>{
+        console.log(radioId)
+        this.setState({radioChecked: radioId})
     }
 
     render() {
@@ -70,6 +77,7 @@ export default class AdvancedPage extends React.Component {
                             ids={["adv-radio1", "adv-radio2", "adv-radio3"]}
                             values={["A", "B", "C"]} 
                             labels={["A", "B", "C"]}
+                            onRadioChecked = {this.handleRadioChecked}
                         />
                     </div>
                     <div className="form-row">

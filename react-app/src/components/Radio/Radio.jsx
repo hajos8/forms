@@ -1,9 +1,10 @@
 import { Fragment, useState } from "react"
-export default function Radio({name,ids,values,labels}){
+export default function Radio({name,ids,values,labels, onRadioChecked}){
     const [choice, setChoice] = useState('adv-radio1')
 
     const handleRadioChange = e =>{
         setChoice(e.id)
+        onRadioChecked(e)
     }
 
     return(
