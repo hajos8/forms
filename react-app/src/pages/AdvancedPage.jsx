@@ -65,7 +65,12 @@ export default class AdvancedPage extends React.Component {
                         </div>
                     </div>
                     <div className="form-row">
-                        {Radio("adv-radio", ["adv-radio1", "adv-radio2", "adv-radio3"], ["A", "B", "C"], ["A", "B", "C"])}
+                        <Radio 
+                            name="adv-radio" 
+                            ids={["adv-radio1", "adv-radio2", "adv-radio3"]}
+                            values={["A", "B", "C"]} 
+                            labels={["A", "B", "C"]}
+                        />
                     </div>
                     <div className="form-row">
                         <label htmlFor="adv-color">Color picker:</label>
