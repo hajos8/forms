@@ -1,6 +1,7 @@
 import React from "react";
 import InputField from "../components/InputField/InputField";
 import Checkbox from "../components/Checkbox/Checkbox";
+import Radio from "../components/Radio/Radio";
 
 export default class AdvancedPage extends React.Component {
     state = {
@@ -64,12 +65,7 @@ export default class AdvancedPage extends React.Component {
                         </div>
                     </div>
                     <div className="form-row">
-                        <label>Radio group:</label>
-                        <div className="radio-group">
-                            <input type="radio" id="adv-radio1" name="adv-radio" value="A" /><label htmlFor="adv-radio1">A</label>
-                            <input type="radio" id="adv-radio2" name="adv-radio" value="B" /><label htmlFor="adv-radio2">B</label>
-                            <input type="radio" id="adv-radio3" name="adv-radio" value="C" /><label htmlFor="adv-radio3">C</label>
-                        </div>
+                        {Radio("adv-radio", ["adv-radio1", "adv-radio2", "adv-radio3"], ["A", "B", "C"], ["A", "B", "C"])}
                     </div>
                     <div className="form-row">
                         <label htmlFor="adv-color">Color picker:</label>
