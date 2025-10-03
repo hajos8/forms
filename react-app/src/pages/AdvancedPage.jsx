@@ -3,6 +3,7 @@ import InputField from "../components/InputField/InputField";
 import Checkbox from "../components/Checkbox/Checkbox";
 import Radio from "../components/Radio/Radio";
 import ColorPicker from "../components/ColoredNigger/ColorPicker";
+import DatePicker from "../components/DatePicker/DatePicker";
 
 export default class AdvancedPage extends React.Component {
     state = {
@@ -15,7 +16,13 @@ export default class AdvancedPage extends React.Component {
 
         radioChecked: "",
 
-        color: ""
+        color: "",
+
+        month: "",
+        week: "",
+        date: "",
+        time: "",
+        datetime: ""
     }
 
     handleAdvTextValueChange = e =>{
@@ -48,6 +55,31 @@ export default class AdvancedPage extends React.Component {
     handleOnColorPicked = color =>{
         console.log(color)
         this.setState({color: color})
+    }
+
+    handleMonthPicked = month =>{
+        console.log(month)
+        this.setState({month: month})
+    }
+
+    handleWeekPicked = week =>{
+        console.log(week)
+        this.setState({week: week})
+    }
+
+    handleDatePicked = date =>{
+        console.log(date)
+        this.setState({date: date})
+    }
+
+    handleTimePicked = time =>{
+        console.log(time)
+        this.setState({time: time})
+    }
+
+    handleDatetimePicked = datetime =>{
+        console.log(datetime)
+        this.setState({datetime: datetime})
     }
 
     render() {
@@ -92,24 +124,19 @@ export default class AdvancedPage extends React.Component {
                         <ColorPicker onColorPick={this.handleOnColorPicked}/>
                     </div>
                     <div className="form-row">
-                        <label htmlFor="adv-month">Month:</label>
-                        <input type="month" id="adv-month" name="adv-month" />
+                        <DatePicker type="month" id="adv-month" label="Month:" onDatePicked={this.handleMonthPicked}/>
                     </div>
                     <div className="form-row">
-                        <label htmlFor="adv-week">Week:</label>
-                        <input type="week" id="adv-week" name="adv-week" />
+                        <DatePicker type="week" id="adv-week" label="Week:" onDatePicked={this.handleWeekPicked}/>
                     </div>
                     <div className="form-row">
-                        <label htmlFor="adv-date">Date:</label>
-                        <input type="date" id="adv-date" name="adv-date" />
+                        <DatePicker type="date" id="adv-date" label="Date:" onDatePicked={this.handleDatePicked}/>
                     </div>
                     <div className="form-row">
-                        <label htmlFor="adv-time">Time:</label>
-                        <input type="time" id="adv-time" name="adv-time" />
+                        <DatePicker type="time" id="adv-time" label="Time:" onDatePicked={this.handleTimePicked}/>
                     </div>
                     <div className="form-row">
-                        <label htmlFor="adv-datetime">Local Datetime:</label>
-                        <input type="datetime-local" id="adv-datetime" name="adv-datetime" />
+                        <DatePicker type="datetime-local" id="adv-datetime" label="Local Datetime:" onDatePicked={this.handleDatetimePicked}/>
                     </div>
                     <div className="form-row">
                         <InputField
