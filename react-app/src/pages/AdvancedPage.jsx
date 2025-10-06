@@ -22,7 +22,9 @@ export default class AdvancedPage extends React.Component {
         week: "",
         date: "",
         time: "",
-        datetime: ""
+        datetime: "",
+
+        hidden: "sample_hidden"
     }
 
     handleAdvTextValueChange = e =>{
@@ -158,7 +160,7 @@ export default class AdvancedPage extends React.Component {
                     </div>
                     <div className="form-row">
                         <label htmlFor="adv-hidden">Hidden value:</label>
-                        <input type="hidden" id="adv-hidden" name="adv-hidden" value="sample_hidden" />
+                        <input type="hidden" id="adv-hidden" name="adv-hidden" value={this.state["hidden"]} />
                         <span style={{color: "#999"}}>(hidden in UI)</span>
                     </div>
                     <div className="form-row">
