@@ -7,6 +7,7 @@ import DatePicker from "../components/DatePicker/DatePicker";
 import NumberInput from "../components/NumberInput/NumberInput";
 import Select from "../components/Select/Select"
 import Range from "../components/Range/Range";
+import MultiLineInput from "../components/MultiLineInput/MultiLineInput";
 
 export default class AdvancedPage extends React.Component {
     state = {
@@ -33,7 +34,9 @@ export default class AdvancedPage extends React.Component {
 
         slide: 50,
 
-        select: ""
+        select: "",
+
+        multiLineInput: ""
     }
 
     handleAdvTextValueChange = e =>{
@@ -105,6 +108,10 @@ export default class AdvancedPage extends React.Component {
 
     handleSlide = value =>{
         this.setState({slide: value})
+    }
+
+    handleMultiLineInputChange = value =>{
+        this.setState({multiLineInput: value})
     }
 
     render() {
@@ -196,8 +203,7 @@ export default class AdvancedPage extends React.Component {
                         <Select id="adv-select" values={new Map([ ["foo", "Foo"],["baz", "Baz"],["bar", "Bar"] ])} onSelect={this.handleSelected}/>
                     </div>
                     <div className="form-row">
-                        <label htmlFor="adv-textarea">Textarea:</label>
-                        <textarea id="adv-textarea" name="adv-textarea" placeholder="Comments..."></textarea>
+                        <MultiLineInput id="adv-textarea" label="Textarea:" placeholder="Comments..." onMultiLineInputChange={this.handleMultiLineInputChange}/>
                     </div>
                     <div className="button-row">
                         <button type="submit">Submit</button>
