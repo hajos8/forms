@@ -6,6 +6,7 @@ import ColorPicker from "../components/ColoredNigger/ColorPicker";
 import DatePicker from "../components/DatePicker/DatePicker";
 import NumberInput from "../components/NumberInput/NumberInput";
 import Select from "../components/Select/Select"
+import Range from "../components/Range/Range";
 
 export default class AdvancedPage extends React.Component {
     state = {
@@ -29,6 +30,8 @@ export default class AdvancedPage extends React.Component {
         hidden: "sample_hidden",
 
         number: 42,
+
+        slide: 50,
 
         select: ""
     }
@@ -98,6 +101,10 @@ export default class AdvancedPage extends React.Component {
     handleSelected = value =>{
         console.log(value)
         this.setState({select: value})
+    }
+
+    handleSlide = value =>{
+        this.setState({slide: value})
     }
 
     render() {
@@ -183,9 +190,7 @@ export default class AdvancedPage extends React.Component {
                         <NumberInput id="adv-number" label="Number:" min="0" max="100" defaultValue={this.state.num} onNumberChange={this.handleNumberChange}/>
                     </div>
                     <div className="form-row range-bar">
-                        <label htmlFor="adv-range">Range:</label>
-                        <input type="range" id="adv-range" name="adv-range" min="0" max="100" step="1" value="50" onInput={()=>{}} />
-                        <span id="rangeValue" style={{minWidth:'32px'}}>50</span>
+                        <Range id="adv-range" label="Range:" min={0} max={100} defaultValue={this.state.slide} onSlideChange={this.handleSlide}/>
                     </div>
                     <div className="form-row">
                         <Select id="adv-select" values={new Map([ ["foo", "Foo"],["baz", "Baz"],["bar", "Bar"] ])} onSelect={this.handleSelected}/>
