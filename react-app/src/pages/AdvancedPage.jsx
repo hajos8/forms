@@ -5,6 +5,7 @@ import Radio from "../components/Radio/Radio";
 import ColorPicker from "../components/ColoredNigger/ColorPicker";
 import DatePicker from "../components/DatePicker/DatePicker";
 import NumberInput from "../components/NumberInput/NumberInput";
+import Select from "../components/Select/Select"
 
 export default class AdvancedPage extends React.Component {
     state = {
@@ -25,7 +26,11 @@ export default class AdvancedPage extends React.Component {
         time: "",
         datetime: "",
 
-        hidden: "sample_hidden"
+        hidden: "sample_hidden",
+
+        number: 42,
+
+        select: ""
     }
 
     handleAdvTextValueChange = e =>{
@@ -83,6 +88,16 @@ export default class AdvancedPage extends React.Component {
     handleDatetimePicked = datetime =>{
         console.log(datetime)
         this.setState({datetime: datetime})
+    }
+
+    handleNumberChange = num =>{
+        console.log(num)
+        this.setState({number: num})
+    }
+
+    handleSelected = value =>{
+        console.log(value)
+        this.setState({select: value})
     }
 
     render() {
@@ -165,7 +180,7 @@ export default class AdvancedPage extends React.Component {
                         <span style={{color: "#999"}}>(hidden in UI)</span>
                     </div>
                     <div className="form-row">
-                        <NumberInput id="adv-number" label="Number:" min="0" max="100"/>
+                        <NumberInput id="adv-number" label="Number:" min="0" max="100" defaultValue={this.state.num} onNumberChange={this.handleNumberChange}/>
                     </div>
                     <div className="form-row range-bar">
                         <label htmlFor="adv-range">Range:</label>
@@ -173,13 +188,7 @@ export default class AdvancedPage extends React.Component {
                         <span id="rangeValue" style={{minWidth:'32px'}}>50</span>
                     </div>
                     <div className="form-row">
-                        <label htmlFor="adv-select">Select:</label>
-                        <select id="adv-select" name="adv-select">
-                            <option>--- Choose ---</option>
-                            <option value="foo">Foo</option>
-                            <option value="bar">Bar</option>
-                            <option value="baz">Baz</option>
-                        </select>
+                        <Select id="adv-select" values={new Map([ ["foo", "Foo"],["baz", "Baz"],["bar", "Bar"] ])} onSelect={this.handleSelected}/>
                     </div>
                     <div className="form-row">
                         <label htmlFor="adv-textarea">Textarea:</label>
