@@ -3,10 +3,10 @@ import { Fragment } from "react";
 
 export default class LoginFormPage extends React.Component {
   state = {
-    loginEmail: '',
+    loginEmail: this.props.loggedInEmail || '',
     loginPassword: '',
 
-    loggedIn: false
+    loggedIn: this.props.loggedInEmail ? true : false,
   }
 
   handleChange = e => {
@@ -34,8 +34,8 @@ export default class LoginFormPage extends React.Component {
       if(res.ok) {
         this.setState({ loggedIn: true })
       }
-
     })
+    .then(() => this.props.onLogin(this.state.loginEmail))
     .catch(console.error)
     .finally(() => {})
   }

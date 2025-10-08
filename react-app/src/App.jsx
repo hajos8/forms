@@ -1,6 +1,7 @@
 /* App.jsx */
 
 import React from "react";
+import { Fragment } from "react";
 
 import SimplePage from "./pages/SimplePage";
 import AdvancedPage from "./pages/AdvancedPage";
@@ -12,6 +13,12 @@ import './App.css';
 export default class App extends React.Component {
   state = {
     pageName: 'SimplePage',
+
+    loggedInEmail: '',
+  }
+
+  handleLogin = email => {
+    this.setState({ loggedInEmail: email })
   }
 
     render() {
@@ -39,12 +46,26 @@ export default class App extends React.Component {
                   </button>
                 </div>
                 <div className="navbar-right">
-                  <button 
-                    className={"nav-btn" + (this.state.pageName=='LoginFormPage' ? " active" : "") }  
-                    id="tabLogin" 
-                    onClick={()=>this.setState({pageName: 'LoginFormPage'})}>
-                      Login
-                  </button>
+                  {this.state.loggedInEmail && <p>Logged in as: {this.state.loggedInEmail}</p>}
+                  {this.state.loggedInEmail ? 
+                  <Fragment>
+                    <button 
+                      className={"nav-btn" + (this.state.pageName=='Logout' ? " active" : "") }  
+                      id="tabLogout" 
+                      onClick={()=>this.setState({loggedInEmail: ''})}>
+                        Logout
+                    </button>
+                  </Fragment>
+                  :
+                  <Fragment>
+                    <button 
+                      className={"nav-btn" + (this.state.pageName=='LoginFormPage' ? " active" : "") }  
+                      id="tabLogin" 
+                      onClick={()=>this.setState({loggedInEmail: '', pageName: 'LoginFormPage'})}>
+                        Login
+                    </button>
+                  </Fragment>
+                  }
                 </div>
               </nav>
 
@@ -52,7 +73,7 @@ export default class App extends React.Component {
                 {this.state.pageName=='SimplePage' && <SimplePage />}
                 {this.state.pageName=='AdvancedPage' && <AdvancedPage />}
                 {this.state.pageName=='FileUploadPage' && <FileUploadPage />}
-                {this.state.pageName=='LoginFormPage' && <LoginFormPage />}
+                {this.state.pageName=='LoginFormPage' && <LoginFormPage onLogin={this.handleLogin} loggedInEmail={this.state.loggedInEmail} />}
               </div>
             </div>
         )
