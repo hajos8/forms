@@ -39,6 +39,11 @@ app.post('/file-upload', upload.array('file'), async (req, res) => {
     }
 })
 
+app.post('/login', (req, res) => {
+    console.log('Login data received:', req.body)
+    res.status(200).json({ message: 'Login data received' })
+})
+
 const port = 3333
 
 app.listen(port, err=>{

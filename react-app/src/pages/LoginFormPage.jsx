@@ -21,8 +21,11 @@ export default class LoginFormPage extends React.Component {
     //send to backend 
 
     fetch("http://localhost:3333/login", {
+      headers: {
+        'Content-Type': 'application/json'
+      },
       method: 'POST',
-      body: this.state
+      body: JSON.stringify(this.state),
     })
     .then(console.log)
     .catch(console.error)
