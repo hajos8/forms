@@ -7,12 +7,26 @@ export default class LoginFormPage extends React.Component {
   }
 
   handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   handleSubmit = e => {
-    e.preventDefault();
-    console.log('Form submitted:', this.state);
+    e.preventDefault()
+    
+    if(this.state.loginPassword.length < 8){
+      console.log('Password length must be at least 8 characters')
+      return 'Password length must be at least 8 characters'
+    }
+
+    //send to backend 
+
+    fetch("http://localhost:3333/login", {
+      method: 'POST',
+      body: this.state
+    })
+    .then(console.log)
+    .catch(console.error)
+    .finally(() => {})
   }
 
   render() {
