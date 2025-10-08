@@ -11,7 +11,21 @@ export default class FileUploadPage extends React.Component {
         
         if(!this.state.selectedFile){
             console.warn('Please upload a file')
+            return null
         }
+
+        const formData = new formData()
+        this.state.selectedFile.forEach(file =>{
+            formData.append("file", file)
+        })
+
+        fetch("/fileUpload", {
+            method: 'POST',
+            body: formData, 
+        })
+        .then(console.log)
+        .catch(console.warn)
+        .finally( ()=>{} )
     }
 
     handleFileUpload = e =>{
