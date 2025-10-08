@@ -1,7 +1,8 @@
 import React from "react";
 export default class FileUploadPage extends React.Component {
     state = {
-        selectedFile: []
+        selectedFile: [],
+        responseMessage: ''
     }
 
     handleSubmit = e =>{
@@ -32,7 +33,7 @@ export default class FileUploadPage extends React.Component {
         .then(data => {
             console.log('Upload successful:', data)
             alert(`Successfully uploaded ${data.files.length} file(s): ${data.files.join(', ')}`)
-            this.setState({ selectedFile: [] }) // Clear selected files after successful upload
+            this.setState({ selectedFile: [], responseMessage: 'Upload successful!' }) // Clear selected files after successful upload
         })
         .catch(error => {
             console.error('Upload failed:', error)
