@@ -53,7 +53,4 @@ export default class LoginFormPage extends React.Component {
     );
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log('email updated:', this.state.loginEmail);
-  }
 }

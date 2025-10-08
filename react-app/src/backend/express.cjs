@@ -6,6 +6,11 @@ const ftp = require('basic-ftp')
 const upload = multer({dest: 'data/'})
 const app = express()
 
+const users = [
+    {email: 'john@doe.com', password: 'password123'},
+    {email: 'jane@doe.com', password: 'password456'}
+]
+
 app.use(cors())
 app.use(express.json())
 
@@ -40,8 +45,17 @@ app.post('/file-upload', upload.array('file'), async (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-    console.log('Login data received:', req.body)
-    res.status(200).json({ message: 'Login data received' })
+    const email = req.body.loginEmail
+    const password = req.body.loginPassword
+
+    const user = users.find(u => u.email === email && u.password === password)
+
+    if (!user) {
+        return res.status(300).json({ login: false })
+    } else {
+        return res.status(200).json({ login: true })
+    }
+
 })
 
 const port = 3333
