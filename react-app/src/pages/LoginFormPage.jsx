@@ -1,9 +1,12 @@
 import React from "react";
+import { Fragment } from "react";
 
 export default class LoginFormPage extends React.Component {
   state = {
     loginEmail: '',
-    loginPassword: ''
+    loginPassword: '',
+
+    loggedIn: false
   }
 
   handleChange = e => {
@@ -25,9 +28,14 @@ export default class LoginFormPage extends React.Component {
         'Content-Type': 'application/json'
       },
       method: 'POST',
-      body: JSON.stringify(this.state),
+      body: JSON.stringify({loginEmail: this.state.loginEmail, loginPassword: this.state.loginPassword}),
     })
-    .then(console.log)
+    .then( res => {
+      if(res.ok) {
+        this.setState({ loggedIn: true })
+      }
+
+    })
     .catch(console.error)
     .finally(() => {})
   }
@@ -49,6 +57,8 @@ export default class LoginFormPage extends React.Component {
           <button type="button" className="social-btn salesforce-login">Login with Salesforce</button>
           <button type="button" className="social-btn facebook-login">Login with Facebook</button>
         </div>
+        <hr style={{ margin: "24px 0" }} />
+        { this.state.loggedIn && <p>{this.state.loginEmail} is logged in</p> }
       </div>
     );
   }
